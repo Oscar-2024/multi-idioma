@@ -67,6 +67,34 @@
                                 </div>
                             </li>
                         @endguest
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ __('Language') }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @foreach(available_languages() as $language)
+                                    @if(get_language_code() === $language->language_code)
+                                        <a
+                                            class="dropdown-item active"
+                                            href="#"
+                                        >
+                                            {{ __($language->name) }}
+                                        </a>
+                                        @continue
+                                    @endif
+
+                                    <a
+                                        class="dropdown-item"
+                                        href="{{ route('lang.switcher', $language->language_code) }}"
+                                    >
+                                        {{ __($language->name) }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

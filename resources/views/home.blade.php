@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="container">
+        <div class="row justify-content-center">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+            <x-flash-message
+                :status="session('status')"
+                :message="session('message')"
+            />
 
-                    {{ __('You are logged in!') }}
-                </div>
+            <!-- articles list -->
+            <div class="col-md-7">
+                @include('articles.list')
+            </div>
+
+            <!-- sidebar categories -->
+            <div class="col-md-5">
+                @include('categories.sidebar')
             </div>
         </div>
     </div>
-</div>
 @endsection

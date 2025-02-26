@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use App\Models\Article;
+use App\Models\Category;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index(): View
     {
-        $this->middleware('auth');
-    }
+        //$articles = Article::with('category')->paginate(10);
+        $categories = Category::withCount('articles')->get();
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+        return view('home', compact('articles', 'categories'));
     }
 }
