@@ -19,9 +19,9 @@ Route::group(['middleware' => 'auth'], function ()
         ->parameters([
             'categories' => 'category:slug',
         ]);
-        /*
+        
     Route::resource('articles', App\Http\Controllers\ArticleController::class)
         ->parameters([
             'articles' => 'article:slug',
-        ]);*/
+        ]);
 });
